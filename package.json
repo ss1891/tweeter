@@ -1,0 +1,9 @@
+{
+	"name": "tweeter",
+	"main": "server.js",
+	"dependencies": {
+		"express": "4.x.x",
+		"mongoose": "*",
+		"body-parser": "1.0.x"
+	}
+}
