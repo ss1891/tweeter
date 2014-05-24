@@ -4,6 +4,9 @@
 	"dependencies": {
 		"express": "4.x.x",
 		"mongoose": "*",
-		"body-parser": "1.0.x"
+		"body-parser": "1.0.x",
+		"mocha": "1.18.x",
+		"expect.js": "0.3.x",
+		"superagent": "0.17.x"
 	}
 }
