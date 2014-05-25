@@ -2,11 +2,6 @@ var express = require('express');
 var User = require('../models/user');
 var router = express.Router();
 
-// TODO: Move to another controller
-router.get('/', function(req, res) {
-	res.json({ message: 'It works!' });
-});
-
 router.route('/users')
 	// Create a user
 	.post(function(req, res) {

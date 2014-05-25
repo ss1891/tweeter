@@ -1,12 +1,21 @@
 {
 	"name": "tweeter",
 	"main": "server.js",
+	"description": "A simple Twitter clone",
+	"repository": "https://github.com/ss1891/tweeter.git",
 	"dependencies": {
 		"express": "4.x.x",
+		"express-session": "*",
 		"mongoose": "*",
 		"body-parser": "1.0.x",
+		"cookie-parser": "1.1.0",
 		"mocha": "1.18.x",
 		"expect.js": "0.3.x",
-		"superagent": "0.17.x"
+		"superagent": "0.17.x",
+		"passport": "0.2.0",
+		"passport-local": "1.0.0",
+		"bcrypt-nodejs": "*",
+		"connect-flash": "*",
+		"ejs": "*"
 	}
 }
