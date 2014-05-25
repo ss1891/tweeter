@@ -3,6 +3,11 @@
 	"main": "server.js",
 	"description": "A simple Twitter clone",
 	"repository": "https://github.com/ss1891/tweeter.git",
+	"main": "server.js",
+	"engines": {
+		"node": "0.11.x",
+		"npm": "1.4.x"
+	},
 	"dependencies": {
 		"express": "4.x.x",
 		"express-session": "*",
