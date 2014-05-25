@@ -7,6 +7,10 @@ router.get('/', function(req, res) {
 	res.render('index');
 });
 
+router.get('/api', function(req, res) {
+	res.render('documentation');
+});
+
 // Route signup attempts
 router.route('/signup')
 	.get(function(req, res) {
