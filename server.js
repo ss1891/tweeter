@@ -9,7 +9,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://ss1891:ss1891@novus.modulusmongo.net:27017/Z7imizud');
 require('./config/passport')(passport);
 
 /* Configuration */
