@@ -21,7 +21,8 @@
 		"passport-local": "1.0.0",
 		"bcrypt-nodejs": "*",
 		"connect-flash": "*",
-		"ejs": "*"
+		"ejs": "*",
+		"grunt": "*"
 	},
 	"scripts": {
 		"test": "mocha",
