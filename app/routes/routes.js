@@ -39,9 +39,8 @@ router.get('/profile', isLoggedIn, function(req, res) {
 	});
 });
 
-/* TODO: implement logout function */
 router.get('/logout', function(req, res) {
-	// res.logout();
+	req.logout();
 	res.redirect('/');
 });
 
