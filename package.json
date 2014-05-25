@@ -17,6 +17,7 @@
 		"mocha": "1.18.x",
 		"supertest": "0.13.0",
 		"should": "3.3.x",
+		"istanbul": "0.2.10",
 		"passport": "0.2.0",
 		"passport-local": "1.0.0",
 		"bcrypt-nodejs": "*",
