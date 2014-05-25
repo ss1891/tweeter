@@ -1,18 +1,141 @@
 <!doctype html>
 <html>
-<head>
-	<title>Tweeter API documentation</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
-</head>
-<body>
-<div class="container">
+	<head>
+		<%- include nav.ejs %>
+		<title>Tweeter API Reference</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+		<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+		<style>
+			body 		{ padding-top: 80px; }
 
-	<div class="jumbotron text-center">
-		<h1>Nothing here yet...</h1>
-</div>
-</body>
+			.model {
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+
+			.code {
+				padding-left: 200px;
+				padding-right: 200px;
+				padding-bottom: 80px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+
+			<div class="header text-center">
+				<h1>REST API Reference</h1>
+			</div>
+		</div>
+
+		<div class="model text-center">
+			<h3>Users</h3>
+		</div>
+		<div class="code">
+		<p><b>POST (create)</b> a new user.</p>
+		<p><b>GET</b> all users.</p>
+		<pre class="prettyprint">
+router.route('/users')
+	.post(function(req, res) {
+		var user = new User();
+	  	user.local.email = req.body.email;
+		user.local.password = user.generateHash(req.body.password);
+
+		user.save(function(err) {
+			if (err) res.send(err);
+			res.json({ message: 'User ' + user.name + ' created!' });
+		});
+	})
+	.get(function(req, res) {
+		User.find(function(err, users) {
+			if (err) res.send(err);
+			res.json(users);
+		});
+	});
+		</pre>
+		<p><b>GET/PUT/DELETE</b> operations on a specific user by ID.</p>
+		<pre class="prettyprint">
+router.route('/users/:user_id')
+	.get(function(req, res) {
+		User.findById(req.params.user_id, function(err, user) {
+			if (err) res.send(err);
+			res.json(user);
+		});
+	})
+	.put(function(req, res) {
+		User.findById(req.params.user_id, function(err, user){
+			if (err) res.send(err);
+			user.local.email = req.body.email;
+			user.save(function(err) {
+				if (err) res.send(err);
+				res.json({ message: 'User details updated!' });
+			});
+		});
+	})
+	.delete(function(req, res) {
+		User.remove({
+			_id: req.params.user_id
+		}, function(err, user) {
+			if (err) res.send(err);
+			res.json({ message: 'User successfully deleted!' });
+		});
+	});
+		</pre>
+		<div class="model text-center">
+			<h3>Tweets</h3>
+		</div>
+		<p><b>POST</b> a new tweet.</p>
+		<p><b>GET</b> all tweets.</p>
+		<pre class="prettyprint">
+router.route('/tweets')
+	.post(function(req, res) {
+		var tweet = Tweet({ 
+			title: req.body.title,
+			body: req.body.body,
+			owner: req.body.owner
+		});
+
+		tweet.save(function(err){
+			if (err) res.send(err);
+			res.json({ message: 'Tweet created!' });
+		});
+	})
+	.get(function(req, res) {
+		Tweet.find(function(err, tweets){
+			if (err) res.send(err);
+			res.json(tweets);
+		});
+	});
+		</pre>
+		<p><b>GET/PUT/DELETE</b> operations on a single tweet by ID.</p>
+		<pre class="prettyprint">
+router.route('/tweets/:tweet_id')
+	.get(function(req, res){
+		Tweet.findById(req.params.tweet_id, function(err, tweet){
+			if (err) res.send(err);
+			res.json(tweet);
+		});
+	})
+	.put(function(req, res){
+		Tweet.findById(req.params.tweet_id, function(err, tweet) {
+			if (err) res.send(err);
+			tweet.title = res.body.title;
+			tweet.body = res.body.body;
+			tweet.save(function(err){
+				if (err) res.send(err);
+				res.json({ message: 'Tweet updated!' })
+			});
+		});
+	})
+	.delete(function(req, res) {
+		Tweet.remove({
+			_id: req.params.tweet_id
+		}, function(err, tweet) {
+			if (err) res.send(err);
+			res.json({ message: 'Tweet successfully deleted!' });
+		});
+	});
+		</pre>
+	</body>
 </html>

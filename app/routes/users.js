@@ -5,7 +5,9 @@ var router = express.Router();
 router.route('/users')
 	// Create a user
 	.post(function(req, res) {
-		var user = User({ name: req.body.name });
+		var user = new User();
+	  user.local.email = req.body.email;
+		user.local.password = user.generateHash(req.body.password);
 
 		user.save(function(err) {
 			if (err) res.send(err);
@@ -32,7 +34,7 @@ router.route('/users/:user_id')
 	.put(function(req, res) {
 		User.findById(req.params.user_id, function(err, user){
 			if (err) res.send(err);
-			user.name = req.body.name;
+			user.local.email = req.body.email;
 			user.save(function(err) {
 				if (err) res.send(err);
 				res.json({ message: 'User details updated!' });
