@@ -15,12 +15,16 @@
 		"body-parser": "1.0.x",
 		"cookie-parser": "1.1.0",
 		"mocha": "1.18.x",
-		"expect.js": "0.3.x",
-		"superagent": "0.17.x",
+		"supertest": "0.13.0",
+		"should": "3.3.x",
 		"passport": "0.2.0",
 		"passport-local": "1.0.0",
 		"bcrypt-nodejs": "*",
 		"connect-flash": "*",
 		"ejs": "*"
+	},
+	"scripts": {
+		"test": "mocha",
+		"start": "server.js"
 	}
 }
